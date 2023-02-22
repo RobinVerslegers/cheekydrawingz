@@ -63,19 +63,39 @@
 		<br>
 	</div>
 	<script>
-		const pics = [
-			'url("IMAGES/Scan 10.jpeg")','url("IMAGES/Scan 11.jpeg")','url("IMAGES/Scan 12.jpeg")'
-        ];
-		const pic = document.querySelector('section');
 
-		function showImage() {
-			var a = Math.floor(Math.random() * pics.length);
-			var img = pics[a];
-			pic.style.backgroundImage = img;
-		}
+function render_image() {
+    var images = [
+        'IMAGES/Scan 11.jpeg',
+        'IMAGES/Scan 12.jpeg',
+        'IMAGES/Scan 10.jpeg',
+        'IMAGES/Scan 13.jpeg',
+        'IMAGES/Scan 14.jpeg',
+        'IMAGES/Scan 15.jpeg',        
+    ]
 
-		setInterval(showImage, 86400000);
-	</script>
+    // define the start date (alter this)
+    var first = new Date("2011-09-03");
+
+    // which image
+    var src = images[
+       // count days since start (int)
+       (((new Date().getTime() - first.getTime())
+         / 86400 / 1000) | 0)
+       % images.length
+    ];
+
+    // create image element
+    var im = document.createElement('img');
+    im.src = src;
+
+    // return code
+    var di = document.createElement('div');
+    di.appendChild(im);
+    return di.innerHTML;
+}
+
+</script>
 </body>
 
 </html>
